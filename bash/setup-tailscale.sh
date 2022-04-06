@@ -10,10 +10,10 @@ echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
 echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
 sudo /usr/sbin/sysctl -p /etc/sysctl.conf
 
-read -p "Enter comma separted list of routes to advertise\n: " api_key
+read -p "Enter comma separted list of routes to advertise\n: " routes
 
 # Start with subnet routes & exit node
-sudo tailscale up --accept-routes --advertise-routes=10.30.0.0/16
+sudo tailscale up --accept-routes --advertise-routes=$routes
 
 
 # Change MTU for site to site to work
