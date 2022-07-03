@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Tested on Debian 10.8
+# Tested on Debian 11.3
 # To be run as user with sudo permissions
 
 
@@ -8,9 +8,11 @@ if [ -x "$(command -v docker)" ]; then
   until [[ $install = 'y'  || $install = 'n' ]]; do
     read -p "Docker is already installed, do you want to reinstall? - Yes (y) | No (n)" install
   done
+else
+  install='y'
 fi
 
-if [ $install = 'y' ]; then
+if [ "$install" = 'y' ]; then
   echo "Installing Docker..."
   sudo apt update -y && sudo apt upgrade -y
 
@@ -25,7 +27,7 @@ if [ $install = 'y' ]; then
   apt-cache policy docker-ce
   sudo apt install docker-ce -y
 
-  sudo usermod -aG docker ${USER}
+  sudo usermod -aG docker "${USER}"
   echo "Docker installed"
 else 
   echo "Docker installation skipped"
