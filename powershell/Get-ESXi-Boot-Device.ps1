@@ -104,7 +104,7 @@ Function Get-ESXiBootDevice {
           }
           $results+=$tmp
       }
-      $results | FT -AutoSize
+    $results | Format-Table -AutoSize
   }
 
   Get-ESXiBootDevice
